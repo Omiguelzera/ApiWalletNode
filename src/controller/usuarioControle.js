@@ -10,4 +10,14 @@ async function cadastro (req, res){
     }
 }
 
-export default { cadastro };
+async function login(req, res){
+      const body = req.body
+      try{
+            const token = await usuarioService.login(body)
+            return res.status(201).send(token);
+      }catch(error){
+            return res.status(401).send(error.message)
+      }
+}
+
+export default { cadastro, login };

@@ -15,4 +15,16 @@ async function cadastrar(body){
 
 }
 
-export default {cadastrar};
+
+async function login(body){
+    const usarioExiste = await usuarioRepository.findByEmail(body.email);
+    if(!usarioExiste) throw new Error("Email ou senha incorretos");
+
+    const senhaValida = bcrypt.compareSync(body.senha, usarioExiste.senha);
+    if(!senhaValida) throw new Error ("Email ou senha incorretos");
+
+
+    return usuarioRepository.generateToken(usarioExiste._id);
+}
+
+export default {cadastrar, login};
