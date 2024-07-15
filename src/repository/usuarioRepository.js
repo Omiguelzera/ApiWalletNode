@@ -12,8 +12,8 @@ async function findByEmail(email){
 }
 
 async function generateToken(id){
-    
+    return id;
 }
 
 
-export default {create, findByEmail};
+export default {create, findByEmail, generateToken};
