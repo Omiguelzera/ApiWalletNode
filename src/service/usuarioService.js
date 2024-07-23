@@ -27,4 +27,10 @@ async function login(body){
     return usuarioRepository.generateToken(usarioExiste._id);
 }
 
-export default {cadastrar, login};
+async function userLogged(id){
+    const usuario = await usuarioRepository.findById(id)
+    if(!usuario) throw new Error("Usuario não encontrado");
+    return usuario;
+}
+
+export default {cadastrar, login, userLogged};

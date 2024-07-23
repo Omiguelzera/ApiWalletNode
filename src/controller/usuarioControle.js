@@ -20,4 +20,15 @@ async function login(req, res){
       }
 }
 
-export default { cadastro, login };
+async function userLogged(req, res){
+      const {_id: id} = res.locals.user;
+
+      try{
+            const usuario = await usuarioService.userLogged(id);
+            return res.send(usuario);
+      }catch(error){
+            return res.status(404).send(error.message);
+      }
+}
+
+export default { cadastro, login, userLogged };
