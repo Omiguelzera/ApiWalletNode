@@ -4,4 +4,8 @@ async function create(data){
     return await TransacoesSchema.create(data);
 }
 
-export default (create);
+async function findByUsuario(id){
+    return await TransacoesSchema.find({ usuarioId: id });
+}
+
+export default {create, findByUsuario};

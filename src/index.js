@@ -8,7 +8,7 @@ const app = express();
 
 app.use(json());
 app.use(usuarioRoute);
-app.use(transacoesRoute)
+app.use("/transacoes", transacoesRoute);
 
 conectaBanco();
 app.listen(port, ()=> console.log("Ouvindo a entradinha hmmm hehe!!"));
