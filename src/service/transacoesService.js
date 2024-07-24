@@ -9,4 +9,22 @@ async function findByUsuario(id){
     return await transacoesRepository.findByUsuario(id);
 }
 
-export default {create, findByUsuario};
+async function deleteTransacao(id, usuarioId){
+
+    
+        const transacaoUsuario = await transacoesRepository.findById(id);
+        if (!transacaoUsuario) {
+            throw new Error("Transação não encontrada");
+        }
+
+        if (usuarioId !== transacaoUsuario.usuarioId.toString()) {
+            throw new Error("Você não tem permissão para deletar essa transação");
+        }
+
+       return await transacoesRepository.deleteTransacao(id);
+        
+ 
+    
+}
+
+export default {create, findByUsuario, deleteTransacao};

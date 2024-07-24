@@ -24,4 +24,15 @@ async function findByUsuario(req, res){
     }
 }
 
-export default { create, findByUsuario }
+async function deleteTransacao(req, res){
+    const { id } = req.params;
+    const{ _id: usuarioId } = res.locals.user;
+    try{
+        await transacoesService.deleteTransacao(id, usuarioId);
+        return res.send("Transação deletada"); 
+    }catch(error){
+        return res.status(500).send(error.message)
+    }
+}
+
+export default { create, findByUsuario, deleteTransacao }

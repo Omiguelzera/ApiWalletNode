@@ -13,6 +13,6 @@ export const validaTransacoes = Joi.object({
         'string.base': 'O campo tipo deve ser uma string.',
         'any.required': 'O campo tipo é obrigatório.'
     }),
-    userId: Joi.object(),
+    usuarioId: Joi.object(),
     createdAt: Joi.date()
 });
