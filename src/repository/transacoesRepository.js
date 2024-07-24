@@ -1,4 +1,4 @@
-import TransacoesSchema from "../schema/Transacoes.js";
+import TransacoesSchema from "../schema/transacoes.js";
 
 async function create(data){
     return await TransacoesSchema.create(data);
@@ -9,7 +9,7 @@ async function findByUsuario(id){
 }
 
 async function deleteTransacao(id){
-    return await TransacoesSchema.findByIdAndDelete({ usuarioId: id});
+    return await TransacoesSchema.findByIdAndDelete(id);
 }
 
 async function findById(id){

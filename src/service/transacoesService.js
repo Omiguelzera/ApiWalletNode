@@ -17,7 +17,14 @@ async function deleteTransacao(id, usuarioId){
             throw new Error("Transação não encontrada");
         }
 
-        if (usuarioId !== transacaoUsuario.usuarioId.toString()) {
+        console.log(`usuarioId: ${usuarioId}, tipo: ${typeof usuarioId}`);
+        console.log(`transacaoUsuario.usuarioId: ${transacaoUsuario.usuarioId}, tipo: ${typeof transacaoUsuario.usuarioId}`);
+    
+        if (!usuarioId || !transacaoUsuario.usuarioId) {
+            throw new Error("Identificadores inválidos");
+        }
+    
+        if (usuarioId.toString() !== transacaoUsuario.usuarioId.toString()) {
             throw new Error("Você não tem permissão para deletar essa transação");
         }
 
