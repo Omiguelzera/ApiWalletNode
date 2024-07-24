@@ -1,5 +1,5 @@
 
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const TransacoesSchema = new Schema({
     valor:{type: Number, required: true},
