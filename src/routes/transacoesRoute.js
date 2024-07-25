@@ -12,5 +12,6 @@ transacoesRoute.use(autenticacaoMiddleware)
 transacoesRoute.post("/", validacaoMiddleware(validaTransacoes), transacoesControle.create);
 transacoesRoute.get("/",  transacoesControle.findByUsuario);
 transacoesRoute.delete("/:id", transacoesControle.deleteTransacao);
+transacoesRoute.put("/:id", transacoesControle.uptadeTransacao);
 
 export default transacoesRoute;

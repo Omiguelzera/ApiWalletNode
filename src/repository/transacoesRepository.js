@@ -12,7 +12,11 @@ async function deleteTransacao(id){
     return await TransacoesSchema.findByIdAndDelete(id);
 }
 
+async function uptadeTransacao(id, data){
+    return await TransacoesSchema.updateOne({_id: id}, data);
+}
+
 async function findById(id){
     return await TransacoesSchema.findById(id);
 }
-export default {create, findByUsuario, deleteTransacao, findById};
+export default {create, findByUsuario, deleteTransacao, findById, uptadeTransacao};

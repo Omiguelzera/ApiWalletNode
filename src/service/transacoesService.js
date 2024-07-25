@@ -9,6 +9,20 @@ async function findByUsuario(id){
     return await transacoesRepository.findByUsuario(id);
 }
 
+async function uptadeTransacao(id, body, usuarioId){
+        const transacaoUsuario = await transacoesRepository.findById(id)
+        if(!transacaoUsuario){
+            throw new Error("Transação não encontrada");     
+        }
+
+        if(usuarioId.toString() !== transacaoUsuario.usuarioId.toString()){
+            throw new Error("Você não tem permissão para modificar está transação");
+        }
+
+        return await transacoesRepository.uptadeTransacao(id, body, usuarioId);
+
+}
+
 async function deleteTransacao(id, usuarioId){
 
     
@@ -16,7 +30,7 @@ async function deleteTransacao(id, usuarioId){
         if (!transacaoUsuario) {
             throw new Error("Transação não encontrada");
         }
-
+            //logs para ver as saídas de dados
         console.log(`usuarioId: ${usuarioId}, tipo: ${typeof usuarioId}`);
         console.log(`transacaoUsuario.usuarioId: ${transacaoUsuario.usuarioId}, tipo: ${typeof transacaoUsuario.usuarioId}`);
     
@@ -34,4 +48,4 @@ async function deleteTransacao(id, usuarioId){
     
 }
 
-export default {create, findByUsuario, deleteTransacao};
+export default {create, findByUsuario, deleteTransacao, uptadeTransacao};

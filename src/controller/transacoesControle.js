@@ -24,6 +24,19 @@ async function findByUsuario(req, res){
     }
 }
 
+async function uptadeTransacao(req, res){
+    const{ id } = req.params;
+    const{_id: usuarioId} = res.locals.user;
+    const body = req.body;
+
+    try{
+        await transacoesService.uptadeTransacao(id, body, usuarioId);
+        return res.send("Transação alterada com sucesso!");
+    }catch(error){
+        return res.status(500).send(error.message)
+    }
+}
+
 async function deleteTransacao(req, res){
     const { id } = req.params;
     const{ _id: usuarioId } = res.locals.user;
@@ -35,4 +48,4 @@ async function deleteTransacao(req, res){
     }
 }
 
-export default { create, findByUsuario, deleteTransacao }
+export default { create, findByUsuario, deleteTransacao, uptadeTransacao }
