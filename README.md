@@ -322,3 +322,49 @@ Para usar a API, é necessário fazer requisições HTTP para as rotas especific
 7. Deletar Transação:
 
     curl -X DELETE http://localhost:3000/transacoes/id_da_transacao -H "Authorization: Bearer token_jwt"
+
+## Visão completa descritiva do projeto : 
+
+Visão Geral
+O projeto é um sistema de gestão de usuários e transações financeiras. Ele foi desenvolvido utilizando Node.js, Express e MongoDB, com Mongoose para a modelagem de dados. As principais funcionalidades incluem o cadastro e autenticação de usuários, bem como a criação, leitura, atualização e exclusão (CRUD) de transações financeiras associadas a esses usuários.
+
+Funcionalidades Principais
+Cadastro de Usuários: Permite que novos usuários se registrem no sistema fornecendo informações pessoais como nome, sobrenome, email, CPF, telefone e senha.
+
+Autenticação de Usuários: Utiliza JWT (JSON Web Token) para autenticar os usuários. Isso inclui a validação de credenciais de login e a emissão de tokens para acesso seguro às rotas protegidas da API.
+
+Gerenciamento de Transações:
+
+Criação de Transações: Usuários autenticados podem criar novas transações financeiras, especificando valor, descrição e tipo (entrada ou saída).
+Listagem de Transações: Usuários podem visualizar todas as suas transações financeiras.
+Atualização de Transações: Permite que usuários atualizem detalhes de transações existentes.
+Exclusão de Transações: Usuários podem deletar transações específicas.
+Estrutura do Projeto
+O projeto é organizado em várias camadas para separar responsabilidades e facilitar a manutenção:
+
+Controller: Contém a lógica de controle que processa as requisições e envia respostas apropriadas. Exemplos incluem transacoesControle.js e usuarioControle.js.
+
+Middleware: Inclui funções intermediárias para processamento de requisições, como autenticação (autenticacaoMiddleware.js) e validação de dados (validacaoMiddleware.js).
+
+Repository: Responsável pela interação direta com o banco de dados. Inclui métodos para operações CRUD nos modelos de dados, como transacoesRepository.js e usuarioRepository.js.
+
+Schema: Define os modelos de dados utilizando Mongoose, e inclui esquemas de validação com Joi. Exemplos incluem Usuario.js, transacoes.js e esquemas de validação em validation/.
+
+Service: Contém a lógica de negócios e regras de aplicação, separando a lógica do controlador. Exemplos incluem transacoesService.js e usuarioService.js.
+
+Routes: Define as rotas da API e associa cada rota a um controlador específico. Exemplos incluem transacoesRoute.js e usuarioRoute.js.
+
+Autenticação
+A autenticação é implementada utilizando JWT. Os tokens são gerados durante o login e são necessários para acessar rotas protegidas. O middleware de autenticação verifica a validade dos tokens antes de permitir o acesso a essas rotas.
+
+Validação de Dados
+A validação dos dados de entrada é realizada utilizando o Joi. Existem esquemas de validação para usuários (cadastro e login) e transações, garantindo que apenas dados válidos sejam processados pelo sistema.
+
+Banco de Dados
+O projeto utiliza MongoDB como banco de dados, com Mongoose para a modelagem de dados. A conexão com o banco é gerenciada em database.js, onde são definidos métodos para conectar e desconectar do banco de dados.
+
+Configuração
+As configurações do projeto, incluindo a URI do banco de dados e a chave secreta para o JWT, são armazenadas em um arquivo .env. Este arquivo deve ser configurado corretamente para que o sistema funcione.
+
+Conclusão
+Este projeto oferece uma estrutura sólida para a gestão de usuários e transações financeiras, utilizando práticas modernas de desenvolvimento com Node.js, Express e MongoDB. Ele é escalável e pode ser expandido com novas funcionalidades conforme necessário.
